@@ -14,20 +14,21 @@ public class UserDAO {
     private static Connection connection;
     public UserDAO() {}
     public static Connection getConnection() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // Chargement du driver
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Connexion réussie !");
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        if (connection == null) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver"); // Chargement du driver
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                System.out.println("Connexion réussie !");
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return connection;
     }
 
     public int addUser(User user) {
         int result = 0;
-        String SQL = "INSERT INTO users (FullName, email, password, role)VALUES (?, ?, ?, ?)";
+        String SQL = "INSERT INTO user (FullName, email, password, role)VALUES (?, ?, ?, ?)";
         try {
             getConnection();
             PreparedStatement stmt = connection.prepareStatement(SQL);
@@ -35,11 +36,17 @@ public class UserDAO {
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getRole());
+
+
+
+            System.out.println("Executing query: " + stmt.toString());
             result = stmt.executeUpdate();
+
         } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return result;
+            System.out.println("Erreur SQL : " + e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
         }
     }
     

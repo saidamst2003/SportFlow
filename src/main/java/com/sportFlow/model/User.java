@@ -17,6 +17,9 @@ public class User {
         this.role = role;
     }
 
+    public User(String fullName, String email, String password, String role) {
+    }
+
     public int getId() {
         return id;
     }
@@ -37,7 +40,7 @@ public class User {
         return email;
     }
 
-    public void c(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -56,5 +59,4 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-
 }

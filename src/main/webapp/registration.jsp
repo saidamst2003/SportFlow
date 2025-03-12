@@ -61,10 +61,10 @@
         </div>
 
 
-        <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+        <button type="submit" class="btn btn-primary w-100" style="background-color:#000000;">S'inscrire</button>
     </form>
     <div class="text-center mt-3">
-        <a href="login.jsp">Déjà inscrit ? Se connecter</a>
+        <a href="login.jsp" style="color:#000000;">Déjà inscrit ? Se connecter</a>
     </div>
 </div>
 

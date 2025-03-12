@@ -41,10 +41,10 @@
             <label for="password" class="form-label">Mot de passe</label>
             <input type="password" class="form-control" id="password" name="password" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+        <button type="submit" class="btn btn-primary w-100" style="background-color:#000000;" >Se connecter</button>
     </form>
     <div class="text-center mt-3">
-        <a href="registration.jsp">Créer un compte</a>
+        <a href="registration.jsp"  style="color:#000000;">Créer un compte</a>
     </div>
 </div>
 </body>
