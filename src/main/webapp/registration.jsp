@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .main {
-            
+
             background-image: url('N.jpg');
             background-size: cover;
             background-position: center;
@@ -60,10 +60,7 @@
             </select>
         </div>
 
-        <div class="mb-3" id="specialityy" style="display: none;">
-            <label for="speciality" class="form-label">Spécialisation</label>
-            <input type="text" class="form-control" id="speciality" name="speciality">
-        </div>
+
         <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
     </form>
     <div class="text-center mt-3">
