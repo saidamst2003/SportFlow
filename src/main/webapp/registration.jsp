@@ -34,7 +34,7 @@
 
 <div class="container">
     <h2 class="text-center mb-4">Inscription</h2>
-    <form action="registration" method="post" onsubmit="return redirectUser(event)">
+    <form action="registration" method="post" >
         <div class="mb-3">
             <label for="fullName" class="form-label">Nom complet</label>
             <input type="text" class="form-control" id="fullName" name="fullName" required>
@@ -103,34 +103,33 @@
 
 
         <button type="submit" class="btn btn-primary w-100" style="background-color:#000000;text-align: center; margin-top:20px">S'inscrire</button>
-    </form>
+
     <div class="text-center mt-3">
-        <a href="login.jsp" style="color:#000000;"Déjà inscrit ? Se connecter</a>
+        <a href="login.jsp" style="color:#000000;">Déjà inscrit ? Se connecter</a>
     </div>
-</div>
+</form>
 
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        var roleSelect = document.getElementById("role");
-        var specialityField = document.getElementById("speciality").parentNode;
-        var memberFields = document.getElementById("memberFields");
+            var roleSelect = document.getElementById("role");
+            var specialityField = document.getElementById("speciality").parentNode;
+            var memberFields = document.getElementById("memberFields");
 
-        function toggleFields() {
-        if (roleSelect.value === "Coatch") {
-        specialityField.style.display = "block";
-        memberFields.style.display = "none";
-    } else {
-        specialityField.style.display = "none";
-        memberFields.style.display = "block";
-    }
-    }
+            function toggleFields() {
+                if (roleSelect.value === "Coatch") {
+                    specialityField.style.display = "block";
+                    memberFields.style.display = "none";
+                } else {
+                    specialityField.style.display = "none";
+                    memberFields.style.display = "block";
+                }
+            }
 
-        roleSelect.addEventListener("change", toggleFields);
+            roleSelect.addEventListener("change", toggleFields);
 
-        toggleFields();
-    });
-
+            toggleFields();
+        });
         function redirectUser(event) {
             event.preventDefault();
 
