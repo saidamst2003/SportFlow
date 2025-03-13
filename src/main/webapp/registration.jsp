@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - Medicare</title>
-    <!-- Bootstrap CDN -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .main {
@@ -14,7 +14,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            min-height: 100vh; /* Assure que l'image couvre tout l'écran */
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -34,7 +34,7 @@
 
 <div class="container">
     <h2 class="text-center mb-4">Inscription</h2>
-    <form action="registration" method="post">
+    <form action="registration" method="post" onsubmit="return redirectUser(event)">
         <div class="mb-3">
             <label for="fullName" class="form-label">Nom complet</label>
             <input type="text" class="form-control" id="fullName" name="fullName" required>
@@ -59,25 +59,94 @@
                 <option value="Member">Member</option>
             </select>
         </div>
+        <!-- Champs spécifiques pour Coatch-->
+
+        <div class="form-group">
+            <label for="speciality" class="form-label">Specialite</label>
+            <select  class="form-control" id="speciality" name="speciality" >
+
+                <option value="">Selectionnez une specialite</option>
+                <option value="Musculation">Musculation</option>
+                <option value="Yoga">Yoga</option>
+                <option value="Natation">Natation</option>
+                <option value="Football">Football</option>
+                <option value="Tennis">Tennis</option>
+                <option value="Boxe">Boxe</option>
+                <option value="Basketball">Basketball</option>
+                <option value="Fitness">Fitness</option>
+            </select>
+        </div>
+
+        <!-- Champs spécifiques pour Member -->
+        <div id="memberFields" class="member-fields">
+            <div class="mb-3">
+                <label for="dateNaissance" class="form-label" style=" ">Date de naissance</label>
+                <input type="date" class="form-control" id="dateNaissance" name="dateNaissance"required>
+            </div>
+
+            <div class="mb-3">
+                <label for="sportPratique" class="form-label">Sport pratique</label>
+                <select class="form-control" id="sportPratique" name="sportPratique">
+                    <option value="">Selectionnez un sport</option>
+                    <option value="Musculation">Musculation</option>
+                    <option value="Yoga">Yoga</option>
+                    <option value="Natation">Natation</option>
+                    <option value="Football">Football</option>
+                    <option value="Tennis">Tennis</option>
+                    <option value="Boxe">Boxe</option>
+                    <option value="Basketball">Basketball</option>
+                    <option value="Fitness">Fitness</option>
+                    <option value="Aucun">Aucun</option>
+                </select>
+            </div>
+        </div>
 
 
-        <button type="submit" class="btn btn-primary w-100" style="background-color:#000000;">S'inscrire</button>
+        <button type="submit" class="btn btn-primary w-100" style="background-color:#000000;text-align: center; margin-top:20px">S'inscrire</button>
     </form>
     <div class="text-center mt-3">
-        <a href="login.jsp" style="color:#000000;">Déjà inscrit ? Se connecter</a>
+        <a href="login.jsp" style="color:#000000;"Déjà inscrit ? Se connecter</a>
     </div>
 </div>
 
-<script>
-    document.getElementById("role").addEventListener("change", function() {
-        var specializationField = document.getElementById("specialityy");
-        if (this.value === "doctor") {
-            specializationField.style.display = "block";
-        } else {
-            specializationField.style.display = "none";
-        }
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        var roleSelect = document.getElementById("role");
+        var specialityField = document.getElementById("speciality").parentNode;
+        var memberFields = document.getElementById("memberFields");
+
+        function toggleFields() {
+        if (roleSelect.value === "Coatch") {
+        specialityField.style.display = "block";
+        memberFields.style.display = "none";
+    } else {
+        specialityField.style.display = "none";
+        memberFields.style.display = "block";
+    }
+    }
+
+        roleSelect.addEventListener("change", toggleFields);
+
+        toggleFields();
     });
+
+        function redirectUser(event) {
+            event.preventDefault();
+
+            var role = document.getElementById("role").value;
+
+            if (role === "Coatch") {
+                window.location.href = "CoatchDashboard.jsp";
+            } else if (role === "Member") {
+                window.location.href = "MemberDashboard.jsp";
+            }
+
+            return false;
+        }
+
 </script>
+
 
 </body>
 </html>
