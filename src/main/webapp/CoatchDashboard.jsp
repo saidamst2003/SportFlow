@@ -37,7 +37,7 @@ private String sportPratique;
 
 <div class="container">
     <h2 class="text-center mb-4">Inscription</h2>
-    <form action="loginServlet" method="post">
+    <form action="" method="post">
         <div class="mb-3">
             <label for="fullName" class="form-label">Nom complet</label>
             <input type="text" class="form-control" id="fullName" name="fullName" required>

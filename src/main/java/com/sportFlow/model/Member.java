@@ -1,6 +1,6 @@
 package com.sportFlow.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Member {
 

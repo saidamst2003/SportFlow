@@ -54,14 +54,14 @@
 
         <div class="mb-3">
             <label for="role" class="form-label">Rôle</label>
-            <select class="form-control" id="role" name="role">
+            <select class="form-control" id="role" name="role" onchange="toggleFields()">
                 <option value="Coatch">Coatch</option>
                 <option value="Member">Member</option>
             </select>
         </div>
         <!-- Champs spécifiques pour Coatch-->
 
-        <div class="form-group">
+        <div id="coachFields" class="form-group">
             <label for="speciality" class="form-label">Specialite</label>
             <select  class="form-control" id="speciality" name="speciality" >
 
@@ -107,44 +107,37 @@
     <div class="text-center mt-3">
         <a href="login.jsp" style="color:#000000;">Déjà inscrit ? Se connecter</a>
     </div>
-</form>
 
+</form>
+</div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var roleSelect = document.getElementById("role");
-            var specialityField = document.getElementById("speciality").parentNode;
-            var memberFields = document.getElementById("memberFields");
+        function toggleFields() {
+            let role = document.getElementById("role").value;
+            let memberFields = document.getElementById("memberFields");
+            let coachFields = document.getElementById("coachFields");
 
-            function toggleFields() {
-                if (roleSelect.value === "Coatch") {
-                    specialityField.style.display = "block";
-                    memberFields.style.display = "none";
-                } else {
-                    specialityField.style.display = "none";
-                    memberFields.style.display = "block";
-                }
+            memberFields.classList.add("d-none");
+            coachFields.classList.add("d-none");
+
+            document.querySelectorAll("#memberFields input, #coachFields input").forEach(input => {
+                input.removeAttribute("required");
+            });
+
+            if (role === "Member") {
+                memberFields.classList.remove("d-none");
+                memberFields.querySelectorAll("input").forEach(input => input.setAttribute("required", "required"));
+            } else if (role === "Coatch") {
+                coachFields.classList.remove("d-none");
+                coachFields.querySelectorAll("input").forEach(input => input.setAttribute("required", "required"));
             }
-
-            roleSelect.addEventListener("change", toggleFields);
-
-            toggleFields();
-        });
-        function redirectUser(event) {
-            event.preventDefault();
-
-            var role = document.getElementById("role").value;
-
-            if (role === "Coatch") {
-                window.location.href = "CoatchDashboard.jsp";
-            } else if (role === "Member") {
-                window.location.href = "MemberDashboard.jsp";
-            }
-
-            return false;
         }
 
-</script>
+        document.addEventListener("DOMContentLoaded", function () {
+            toggleFields();
+        });
+    </script>
+
 
 
 </body>

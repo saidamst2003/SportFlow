@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.Date;
+
 @WebServlet("/registration")
 public class restrationServlet  extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -18,17 +20,21 @@ public class restrationServlet  extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
+        String speciality =request.getParameter("speciality");
+        String sportPratique =request.getParameter("sportPratique");
+        String dateBirth =request.getParameter("dateNaissance");
+        Date date = Date.valueOf(dateBirth);
 
-
-        User user = new User(fullName, email, password, role);
+        User user = new User();
         user.setFullName(fullName);
         user.setEmail(email);
         user.setPassword(password);
         user.setRole(role);
 
 
+
         UserDAO userDao = new UserDAO();
-        int result = userDao.addUser(user);
+        int result = userDao.addUser(user,date,sportPratique,speciality);
 
         if (result > 0) {
             response.sendRedirect("login.jsp");
